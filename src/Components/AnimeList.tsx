@@ -27,7 +27,7 @@ const AnimeList: React.FC<AnimeListProps> = ({ animeData }) => {
                 <p className="text-tiny uppercase font-bold">
                   Episodes : {anime.episodes}
                 </p>
-                <h4 className="font-bold text-large w-72">{anime.title}</h4>
+                <h4 className="font-bold text-large max-w-60">{anime.title}</h4>
                 {/* <small className="text-default-500 w-72 h-auto">
                   {anime.background}
                 </small> */}

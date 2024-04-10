@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AnimeList from "./Components/AnimeList";
 import Navigationbar from "./Components/Navbar";
-import { Card, CardHeader, CardBody, Image, Input } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 
 const App: React.FC = () => {
   const [search, setSearch] = useState<string>("");
@@ -43,14 +43,8 @@ const App: React.FC = () => {
     <>
       <Navigationbar />
 
-      <div className="bg-sky-200">
+      <div className="">
         <div className=" flex align-center justify-center p-5">
-          {/* <input
-            className="w-96 h-12 rounded-3xl border-3 border-sky-600 px-6 bg-transparent"
-            type="search"
-            placeholder="Enter anime name"
-            onChange={(e) => setSearch(e.target.value)}
-          /> */}
           <Input
             classNames={{
               base: "max-w-full sm:max-w-[10rem] h-10",
