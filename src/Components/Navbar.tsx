@@ -1,14 +1,27 @@
 import { useState } from "react";
 import Logo from "../assets/Logo.png";
-import { Navbar, NavbarBrand, NavbarContent, Input } from "@nextui-org/react";
+import {
+  Switch,
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  Input,
+} from "@nextui-org/react";
 import ApiHandler from "./ApiHandler";
+import MoonIcon from "../assets/MoonIcon.tsx";
+import SunIcon from "../assets/SunIcon.tsx";
 
 interface NavbarProps {
   onDataFetch: (data: []) => void;
+  onModeChange: (Value: boolean) => void;
 }
 
-const Navigationbar: React.FC<NavbarProps> = ({ onDataFetch }) => {
+const Navigationbar: React.FC<NavbarProps> = ({
+  onDataFetch,
+  onModeChange,
+}) => {
   const [search, setSearch] = useState<string>("");
+  const [isDark, setIsDark] = useState<boolean>(true);
 
   const handleNavDataFetch = (data: []) => {
     onDataFetch(data);
@@ -17,7 +30,9 @@ const Navigationbar: React.FC<NavbarProps> = ({ onDataFetch }) => {
     <Navbar isBordered>
       <NavbarBrand>
         <img src={Logo} className="h-14 w-auto" alt="Animaxray" />
-        <p className="font-bold text-inherit">ANIMAXRAY</p>
+        <p className="text-4xl font-bold  bg-gradient-to-r from-red-600 via-orange-500 to-yellow-600 inline-block text-transparent bg-clip-text">
+          ANIMAXRAY
+        </p>
       </NavbarBrand>
       <NavbarContent
         className="hidden sm:flex gap-4"
@@ -38,6 +53,23 @@ const Navigationbar: React.FC<NavbarProps> = ({ onDataFetch }) => {
           onChange={(e) => setSearch(e.target.value)}
         />
         <ApiHandler searchQuery={search} onDataFetch={handleNavDataFetch} />
+        <Switch
+          onChange={() => {
+            setIsDark((prevState: boolean) => !prevState);
+            onModeChange(isDark);
+          }}
+          size="lg"
+          color="secondary"
+          thumbIcon={({ isSelected, className }) =>
+            isSelected ? (
+              <SunIcon className={className} />
+            ) : (
+              <MoonIcon className={className} />
+            )
+          }
+        >
+          Dark mode
+        </Switch>
       </NavbarContent>
     </Navbar>
   );
