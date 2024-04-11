@@ -1,7 +1,18 @@
+import { useState } from "react";
 import Logo from "../assets/Logo.png";
 import { Navbar, NavbarBrand, NavbarContent, Input } from "@nextui-org/react";
+import ApiHandler from "./ApiHandler";
 
-const Navigationbar = () => {
+interface NavbarProps {
+  onDataFetch: (data: []) => void;
+}
+
+const Navigationbar: React.FC<NavbarProps> = ({ onDataFetch }) => {
+  const [search, setSearch] = useState<string>("");
+
+  const handleNavDataFetch = (data: []) => {
+    onDataFetch(data);
+  };
   return (
     <Navbar isBordered>
       <NavbarBrand>
@@ -24,7 +35,9 @@ const Navigationbar = () => {
           placeholder="Type to search..."
           size="md"
           type="search"
+          onChange={(e) => setSearch(e.target.value)}
         />
+        <ApiHandler searchQuery={search} onDataFetch={handleNavDataFetch} />
       </NavbarContent>
     </Navbar>
   );

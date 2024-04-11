@@ -32,7 +32,7 @@ const ApiHandler: React.FC<ApiHandlerProps> = ({
 
     const timeoutId = setTimeout(() => {
       fetchData();
-    }, 1000);
+    }, 500);
 
     setTypingTimeout(timeoutId);
 
