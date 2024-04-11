@@ -20,14 +20,15 @@ const App: React.FC = () => {
     <>
       <NextUIProvider>
         <main className={isDark ? "dark" : "light"}>
-          <Navigationbar
-            onDataFetch={handleDataFetch}
-            onModeChange={appModeChange}
-          />
-          <div className=" dark:bg-background light:bg-white">
-            <div className="flex align-center justify-center p-5"></div>
-            <div className="flex flex-grow-0 flex-wrap gap-5 p-5 m-10 justify-center ">
-              <AnimeList animeData={animeData} />
+          <div className="bg-lightbg dark:bg-darkbg bg-center bg-no-repeat bg-cover">
+            <Navigationbar
+              onDataFetch={handleDataFetch}
+              onModeChange={appModeChange}
+            />
+            <div className=" ">
+              <div className="">
+                <AnimeList animeData={animeData} />
+              </div>
             </div>
           </div>
         </main>

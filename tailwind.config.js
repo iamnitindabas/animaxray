@@ -8,7 +8,12 @@ export default {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        lightbg: "url(../src/assets/bglight.svg)",
+        darkbg: "url(../src/assets/bgdark.svg)",
+      },
+    },
   },
   darkMode: "class",
   plugins: [

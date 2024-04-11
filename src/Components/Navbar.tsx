@@ -27,10 +27,10 @@ const Navigationbar: React.FC<NavbarProps> = ({
     onDataFetch(data);
   };
   return (
-    <Navbar isBordered>
+    <Navbar className="h-24">
       <NavbarBrand>
         <img src={Logo} className="h-14 w-auto" alt="Animaxray" />
-        <p className="text-4xl font-bold  bg-gradient-to-r from-red-600 via-orange-500 to-yellow-600 inline-block text-transparent bg-clip-text">
+        <p className="text-4xl font-bold  bg-gradient-to-r from-violet-900  to-violet-800 inline-block text-transparent bg-clip-text dark:{bg-gradient-to-r from-violet-500  via-violet-500 to-violet-500}">
           ANIMAXRAY
         </p>
       </NavbarBrand>
@@ -67,9 +67,7 @@ const Navigationbar: React.FC<NavbarProps> = ({
               <MoonIcon className={className} />
             )
           }
-        >
-          Dark mode
-        </Switch>
+        ></Switch>
       </NavbarContent>
     </Navbar>
   );
