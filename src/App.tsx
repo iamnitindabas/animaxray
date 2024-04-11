@@ -3,8 +3,6 @@
 import React, { useState } from "react";
 import AnimeList from "./Components/AnimeList";
 import Navigationbar from "./Components/Navbar";
-import { Input } from "@nextui-org/react";
-import ApiHandler from "./Components/ApiHandler";
 
 const App: React.FC = () => {
   const [animeData, setAnimeData] = useState<[] | null>(null);
