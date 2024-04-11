@@ -1,50 +1,25 @@
-import React, { useEffect, useState } from "react";
+// App.tsx
+
+import React, { useState } from "react";
 import AnimeList from "./Components/AnimeList";
 import Navigationbar from "./Components/Navbar";
 import { Input } from "@nextui-org/react";
+import ApiHandler from "./Components/ApiHandler";
 
 const App: React.FC = () => {
   const [search, setSearch] = useState<string>("");
-  const [animeData, setAnimeData] = useState(null);
-  const [typingTimeout, setTypingTimeout] = useState<number | null>(null);
+  const [animeData, setAnimeData] = useState<[] | null>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(
-          `https://api.jikan.moe/v4/anime?q=${search}&limit=20`
-        );
-        const resData = await res.json();
-        setAnimeData(resData.data); // Assuming API returns data in the format { data: Anime[] }
-        console.log(resData.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    if (typingTimeout) {
-      clearTimeout(typingTimeout);
-    }
-
-    const timeoutId = setTimeout(() => {
-      fetchData();
-    }, 1000);
-
-    setTypingTimeout(timeoutId);
-
-    return () => {
-      if (typingTimeout) {
-        clearTimeout(typingTimeout);
-      }
-    };
-  }, [search]);
+  const handleDataFetch = (data: []) => {
+    setAnimeData(data);
+    console.log(data);
+  };
 
   return (
     <>
       <Navigationbar />
-
       <div className="">
-        <div className=" flex align-center justify-center p-5">
+        <div className="flex align-center justify-center p-5">
           <Input
             classNames={{
               base: "max-w-full sm:max-w-[10rem] h-10",
@@ -55,11 +30,11 @@ const App: React.FC = () => {
             }}
             placeholder="Type to search..."
             size="md"
-            // startContent={<SearchIcon size={18} />}
             type="search"
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
+        <ApiHandler searchQuery={search} onDataFetch={handleDataFetch} />
         <div className="flex flex-grow-0 flex-wrap gap-5 p-5 m-10 justify-center ">
           <AnimeList animeData={animeData} />
         </div>

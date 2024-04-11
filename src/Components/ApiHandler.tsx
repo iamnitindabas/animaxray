@@ -4,13 +4,15 @@ import React, { useEffect, useState } from "react";
 
 interface ApiHandlerProps {
   searchQuery: string;
-  onDataFetch: (data: any) => void;
+  onDataFetch: (data: []) => void;
 }
 
 const ApiHandler: React.FC<ApiHandlerProps> = ({
   searchQuery,
   onDataFetch,
 }) => {
+  const [typingTimeout, setTypingTimeout] = useState<number | null>(null);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -24,10 +26,22 @@ const ApiHandler: React.FC<ApiHandlerProps> = ({
       }
     };
 
-    if (searchQuery) {
-      fetchData();
+    if (typingTimeout) {
+      clearTimeout(typingTimeout);
     }
-  }, [searchQuery, onDataFetch]);
+
+    const timeoutId = setTimeout(() => {
+      fetchData();
+    }, 1000);
+
+    setTypingTimeout(timeoutId);
+
+    return () => {
+      if (typingTimeout) {
+        clearTimeout(typingTimeout);
+      }
+    };
+  }, [searchQuery]);
 
   return null;
 };
