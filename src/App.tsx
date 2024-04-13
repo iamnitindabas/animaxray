@@ -1,7 +1,7 @@
 // App.tsx
 
 import React, { useState } from "react";
-import AnimeList from "./Components/AnimeList";
+import AnimeLists from "./Components/Animelists";
 import { NextUIProvider } from "@nextui-org/react";
 import Navigationbar from "./Components/Navbar";
 
@@ -27,7 +27,7 @@ const App: React.FC = () => {
             />
             <div className=" ">
               <div className="">
-                <AnimeList animeData={animeData} />
+                <AnimeLists animeData={animeData} />
               </div>
             </div>
           </div>
