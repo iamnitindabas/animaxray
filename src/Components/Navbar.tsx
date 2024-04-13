@@ -45,7 +45,11 @@ const Navigationbar: React.FC<NavbarProps> = ({
     onDataFetch(data);
   };
   return (
-    <Navbar className="h-24" onMenuOpenChange={setIsMenuOpen}>
+    <Navbar
+      shouldHideOnScroll
+      className="h-24 bg-[#2b2d42]"
+      onMenuOpenChange={setIsMenuOpen}
+    >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
