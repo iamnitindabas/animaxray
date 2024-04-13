@@ -53,7 +53,7 @@ const Navigationbar: React.FC<NavbarProps> = ({
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className=" md:hidden text-black dark:text-white "
+          className=" md:hidden text-white "
         />
         <NavbarBrand>
           <img

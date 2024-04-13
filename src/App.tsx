@@ -27,7 +27,7 @@ const App: React.FC = () => {
               onModeChange={appModeChange}
             />
             <div className="p-3">
-              <AnimeLists animeData={animeData} />
+              <AnimeLists multiAnimeData={animeData} />
             </div>
           </div>
         </main>

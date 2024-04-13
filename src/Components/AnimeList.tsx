@@ -1,110 +1,97 @@
 import React from "react";
 import { Card, Image, Button, Link } from "@nextui-org/react";
 
-interface Anime {
-  title: string;
-  background: string;
-  episodes: number;
-  duration: string;
-  genres: genre[] | null;
-  trailer: {
-    youtube_id: string;
-  };
-  images: {
-    jpg: {
-      // Mark jpg property as optional
-      large_image_url: string;
-    };
-  };
-}
 interface genre {
   name: string;
   url: string;
 }
 
 interface AnimeListProps {
-  animeData: Anime[] | null;
+  singleAnimeData: {
+    title: string;
+    background: string;
+    episodes: number;
+    duration: string;
+    genres: genre[] | null;
+    trailer: {
+      youtube_id: string;
+    };
+    images: {
+      jpg: {
+        // Mark jpg property as optional
+        large_image_url: string;
+      };
+    };
+  };
 }
 
-const AnimeList: React.FC<AnimeListProps> = ({ animeData }) => {
+const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
   const colorType = ["primary", "secondary", "danger", "warning", "success"];
 
   const getRandomColor = () => {
     const randomIndex = Math.floor(Math.random() * colorType.length);
     return colorType[randomIndex];
   };
+  const randomColor = getRandomColor();
 
   return (
     <>
-      {animeData ? (
-        animeData.map((anime, index) => {
-          const randomColor = getRandomColor();
-          return (
-            <div key={index} className="">
-              <Card className="bg-[#f5f6f9] dark:bg-[#1f232d] h-72 min-w-[500px]">
-                <div className="grid grid-cols-[230px_auto] rounded-none ">
-                  <Image
-                    radius="none"
-                    isZoomed
-                    alt="Anime Poster"
-                    className="h-[300px] w-[230px] object-cover object-center min-w-full  min-h-full "
-                    src={anime.images.jpg.large_image_url}
-                    // width={270}
-                    // height={270}
-                  />
+      <Card className="bg-[#f5f6f9] dark:bg-[#1f232d] h-72 min-w-[500px]">
+        <div className="grid grid-cols-[230px_auto] rounded-none ">
+          <Image
+            radius="none"
+            isZoomed
+            alt="Anime Poster"
+            className="h-[300px] w-[230px] object-cover object-center min-w-full  min-h-full "
+            src={singleAnimeData.images.jpg.large_image_url}
+          />
 
-                  <div className="grid grid-cols-[100%] grid-rows-[auto_50px] gap-1.5 max-h-72">
-                    <div className="p-5 overflow-auto transition-all  text-[#5c728a]  dark:text-[#9fadbd]">
-                      <div className="flex gap-5 justify-between">
-                        <p className="text-xs uppercase font-bold">
-                          Episodes : {anime.episodes ? anime.episodes : "N/A"}
-                        </p>
-                        <p className="text-tiny font-bold">
-                          Duration: {anime.duration}
-                        </p>
-                      </div>
-                      <h4 className="font-bold text-2xl py-2">{anime.title}</h4>
+          <div className="grid grid-cols-[100%] grid-rows-[auto_50px] gap-1.5 max-h-72">
+            <div className="p-5 overflow-auto transition-all  text-[#5c728a]  dark:text-[#9fadbd]">
+              <div className="flex gap-5 justify-between">
+                <p className="text-xs uppercase font-bold">
+                  Episodes :{" "}
+                  {singleAnimeData.episodes ? singleAnimeData.episodes : "N/A"}
+                </p>
+                <p className="text-tiny font-bold">
+                  Duration: {singleAnimeData.duration}
+                </p>
+              </div>
+              <h4 className="font-bold text-2xl py-2">
+                {singleAnimeData.title}
+              </h4>
 
-                      <div className="line-clamp-4 overflow-hidden hover:line-clamp-none ">
-                        <small className=" text-ellipsis overflow-hidden  ">
-                          {anime.background
-                            ? anime.background
-                            : "No description available."}
-                        </small>
-                      </div>
-                    </div>
-                    <div className="flex items-center px-3 pt-1 overflow-hidden  bg-[#e5e9f5] dark:bg-[#191d26]">
-                      {anime.genres ? (
-                        anime.genres.slice(0, 3).map((genre, index) => (
-                          <div
-                            key={index}
-                            className="flex align-bottom flex-wrap"
-                          >
-                            <Button
-                              className="mr-1 mb-1 rounded-full"
-                              size="sm"
-                              href={genre.url}
-                              as={Link}
-                              color={randomColor}
-                              variant="flat"
-                            >
-                              {genre.name}
-                            </Button>
-                          </div>
-                        ))
-                      ) : (
-                        <p></p>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </Card>
+              <div className="line-clamp-4 overflow-hidden hover:line-clamp-none ">
+                <small className=" text-ellipsis overflow-hidden  ">
+                  {singleAnimeData.background
+                    ? singleAnimeData.background
+                    : "No description available."}
+                </small>
+              </div>
             </div>
-          );
-        })
-      ) : (
-        <p>No anime data available</p>
-      )}
+            <div className="flex items-center px-3 pt-1 overflow-hidden  bg-[#e5e9f5] dark:bg-[#191d26]">
+              {singleAnimeData.genres ? (
+                singleAnimeData.genres.slice(0, 3).map((genre, index) => (
+                  <div key={index} className="flex align-bottom flex-wrap">
+                    <Button
+                      className="mr-1 mb-1 rounded-full"
+                      size="sm"
+                      href={genre.url}
+                      as={Link}
+                      color={randomColor}
+                      variant="flat"
+                    >
+                      {genre.name}
+                    </Button>
+                  </div>
+                ))
+              ) : (
+                <p></p>
+              )}
+            </div>
+          </div>
+        </div>
+      </Card>
     </>
   );
 };
