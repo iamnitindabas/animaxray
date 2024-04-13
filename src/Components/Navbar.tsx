@@ -1,10 +1,14 @@
 import { useState } from "react";
-import Logo from "../assets/Logo.png";
+import Logo from "../assets/Logofull.png";
 import {
   Switch,
   Navbar,
   NavbarBrand,
   NavbarContent,
+  NavbarMenuToggle,
+  NavbarMenu,
+  NavbarMenuItem,
+  Link,
   Input,
 } from "@nextui-org/react";
 import ApiHandler from "./ApiHandler";
@@ -20,6 +24,20 @@ const Navigationbar: React.FC<NavbarProps> = ({
   onDataFetch,
   onModeChange,
 }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const menuItems = [
+    "Profile",
+    "Dashboard",
+    "Activity",
+    "Analytics",
+    "System",
+    "Deployments",
+    "My Settings",
+    "Team Settings",
+    "Help & Feedback",
+    "Log Out",
+  ];
   const [search, setSearch] = useState<string>("");
   const [isDark, setIsDark] = useState<boolean>(true);
 
@@ -27,32 +45,59 @@ const Navigationbar: React.FC<NavbarProps> = ({
     onDataFetch(data);
   };
   return (
-    <Navbar className="h-24">
-      <NavbarBrand>
-        <img src={Logo} className="h-14 w-auto" alt="Animaxray" />
-        <p className="text-4xl font-bold  bg-gradient-to-r from-violet-900  to-violet-800 inline-block text-transparent bg-clip-text dark:{bg-gradient-to-r from-violet-500  via-violet-500 to-violet-500}">
-          ANIMAXRAY
-        </p>
-      </NavbarBrand>
-      <NavbarContent
-        className="hidden sm:flex gap-4"
-        justify="center"
-      ></NavbarContent>
+    <Navbar className="h-24" onMenuOpenChange={setIsMenuOpen}>
+      <NavbarContent>
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className=" md:hidden text-black dark:text-white "
+        />
+        <NavbarBrand>
+          <img
+            src={Logo}
+            className="max-h-24 w-auto hidden md:block "
+            alt="Animaxray"
+          />
+          {/* <p className="text-4xl md:block sm:hidden font-bold  bg-gradient-to-r from-violet-900  to-violet-800 inline-block text-transparent bg-clip-text dark:{bg-gradient-to-r from-violet-500  via-violet-500 to-violet-500}">
+            ANIMAXRAY
+          </p> */}
+        </NavbarBrand>
+      </NavbarContent>
+      <NavbarMenu>
+        {menuItems.map((item, index) => (
+          <NavbarMenuItem key={`${item}-${index}`}>
+            <Link
+              color={
+                index === 2
+                  ? "primary"
+                  : index === menuItems.length - 1
+                  ? "danger"
+                  : "foreground"
+              }
+              className="w-full"
+              href="#"
+              size="lg"
+            >
+              {item}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
       <NavbarContent justify="end">
         <Input
           classNames={{
-            base: "max-w-full sm:max-w-[10rem] h-10",
+            base: "h-14 w-[70vw] md:h-12 md:w-72 ",
             mainWrapper: "h-full",
-            input: "text-medium",
+            input: "text-medium ",
             inputWrapper:
               "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
           }}
-          placeholder="Type to search..."
+          placeholder="Type to search anime..."
           size="md"
           type="search"
           onChange={(e) => setSearch(e.target.value)}
         />
         <ApiHandler searchQuery={search} onDataFetch={handleNavDataFetch} />
+
         <Switch
           onChange={() => {
             setIsDark((prevState: boolean) => !prevState);
@@ -69,6 +114,26 @@ const Navigationbar: React.FC<NavbarProps> = ({
           }
         ></Switch>
       </NavbarContent>
+      <NavbarMenu className="">
+        {menuItems.map((item, index) => (
+          <NavbarMenuItem key={`${item}-${index}`}>
+            <Link
+              color={
+                index === 2
+                  ? "primary"
+                  : index === menuItems.length - 1
+                  ? "danger"
+                  : "foreground"
+              }
+              className="w-full"
+              href="#"
+              size="lg"
+            >
+              {item}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
     </Navbar>
   );
 };

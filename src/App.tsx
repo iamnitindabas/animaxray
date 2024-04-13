@@ -19,16 +19,15 @@ const App: React.FC = () => {
   return (
     <>
       <NextUIProvider>
-        <main className={isDark ? "dark" : "light"}>
-          <div className="bg-white dark:bg-[#13171d] bg-center bg-no-repeat bg-cover">
+        <main className={isDark ? "dark " : "light"}>
+          <header className="w-full fixed top-0 h-[350px] bg-[#cac5ff] dark:bg-[#2b2d42]"></header>
+          <div className="bg-gray-200 dark:bg-[#13171d] bg-center bg-no-repeat bg-cover ">
             <Navigationbar
               onDataFetch={handleDataFetch}
               onModeChange={appModeChange}
             />
-            <div className=" ">
-              <div className="">
-                <AnimeLists animeData={animeData} />
-              </div>
+            <div className="p-3">
+              <AnimeLists animeData={animeData} />
             </div>
           </div>
         </main>
