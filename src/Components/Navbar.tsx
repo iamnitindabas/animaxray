@@ -118,7 +118,7 @@ const Navigationbar: React.FC<NavbarProps> = ({
           }
         ></Switch>
       </NavbarContent>
-      <NavbarMenu className="">
+      <NavbarMenu className="dark light:light">
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link

@@ -1,5 +1,7 @@
 import React from "react";
 import { Card, Image, Button, Link } from "@nextui-org/react";
+import star from "../assets/star.svg";
+import heart from "../assets/red-heart.svg";
 
 interface genre {
   name: string;
@@ -9,9 +11,11 @@ interface genre {
 interface AnimeListProps {
   singleAnimeData: {
     title: string;
-    background: string;
+    synopsis: string;
     episodes: number;
     duration: string;
+    popularity: number;
+    score: number;
     genres: genre[] | null;
     trailer: {
       youtube_id: string;
@@ -48,14 +52,28 @@ const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
 
           <div className="grid grid-cols-[100%] grid-rows-[auto_50px] gap-1.5 max-h-72">
             <div className="p-5 overflow-auto transition-all  text-[#5c728a]  dark:text-[#9fadbd]">
-              <div className="flex gap-5 justify-between">
-                <p className="text-xs uppercase font-bold">
-                  Episodes :{" "}
-                  {singleAnimeData.episodes ? singleAnimeData.episodes : "N/A"}
-                </p>
-                <p className="text-tiny font-bold">
-                  Duration: {singleAnimeData.duration}
-                </p>
+              <div className="grid grid-cols-2">
+                <div>
+                  <p className="text-xs font-bold">
+                    Episodes :
+                    {singleAnimeData.episodes
+                      ? singleAnimeData.episodes
+                      : "N/A"}
+                  </p>
+                  <p className="text-tiny font-bold">
+                    Duration: {singleAnimeData.duration}
+                  </p>
+                </div>
+                <div className="flex items-center justify-end gap-4">
+                  <div className="flex items-center justify-between ">
+                    <img src={heart} alt="" className="size-7 pr-2" />#
+                    {singleAnimeData.popularity}
+                  </div>
+                  <div className="flex items-center justify-evenly">
+                    <img src={star} alt="" className="size-7 pr-2" />
+                    <p>{singleAnimeData.score}</p>
+                  </div>
+                </div>
               </div>
               <h4 className="font-bold text-2xl py-2">
                 {singleAnimeData.title}
@@ -63,8 +81,8 @@ const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
 
               <div className="line-clamp-4 overflow-hidden hover:line-clamp-none ">
                 <small className=" text-ellipsis overflow-hidden  ">
-                  {singleAnimeData.background
-                    ? singleAnimeData.background
+                  {singleAnimeData.synopsis
+                    ? singleAnimeData.synopsis
                     : "No description available."}
                 </small>
               </div>
