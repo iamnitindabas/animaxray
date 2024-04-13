@@ -20,7 +20,7 @@ const App: React.FC = () => {
     <>
       <NextUIProvider>
         <main className={isDark ? "dark" : "light"}>
-          <div className="bg-lightbg dark:bg-darkbg bg-center bg-no-repeat bg-cover">
+          <div className="bg-white dark:bg-[#13171d] bg-center bg-no-repeat bg-cover">
             <Navigationbar
               onDataFetch={handleDataFetch}
               onModeChange={appModeChange}

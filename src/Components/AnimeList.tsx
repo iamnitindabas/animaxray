@@ -27,37 +27,36 @@ const AnimeList: React.FC<AnimeListProps> = ({ animeData }) => {
       {animeData ? (
         animeData.map((anime, index) => (
           <div key={index} className="">
-            <Card className=" ">
+            <Card className="bg-white dark:bg-[#1f232d] h-72 min-w-[500px]">
               <div className="grid grid-cols-[200px_auto] gap-3 ">
-                <div className="flex justify-center items-center ">
-                  <Image
-                    isZoomed
-                    alt="Anime Poster"
-                    className=" object-cover object-center rounded-xl min-w-full  min-h-full "
-                    src={anime.images.jpg.large_image_url}
-                    // width={270}
-                    // height={270}
-                  />
-                </div>
+                <Image
+                  isZoomed
+                  alt="Anime Poster"
+                  className="h-72 w-[200px] object-cover object-center rounded-xl min-w-full  min-h-full "
+                  src={anime.images.jpg.large_image_url}
+                  // width={270}
+                  // height={270}
+                />
 
-                <div className="grid grid-cols-[100%] grid-rows-[auto_50px] ">
-                  <div className="p-3">
+                <div className="grid grid-cols-[100%] grid-rows-[auto_50px] gap-1.5 max-h-72">
+                  <div className="p-3 overflow-auto transition-all">
                     <p className="text-tiny uppercase font-bold">
                       Episodes : {anime.episodes ? anime.episodes : "N/A"}
                     </p>
-                    <h4 className="font-bold  text-violet-600 text-xl ">
+                    <h4 className="font-bold text-2xl text-violet-600 py-2">
                       {anime.title}
                     </h4>
-                    <div className="max-h-36 overflow-auto text-ellipsis ">
-                      <small className="text-default-500 text-wrap text-ellipsis">
-                        {anime.background}
+                    <div className="line-clamp-5 overflow-hidden hover:line-clamp-none ">
+                      <small className=" text-ellipsis overflow-hidden text-default-500 ">
+                        {anime.background
+                          ? anime.background
+                          : "No description available."}
                         {/* // && anime.background.length > 250
                             // ? anime.background.substring(0, 1000) + "......"
                             // : anime.background} */}
                       </small>
                     </div>
                   </div>
-
                   <div className="flex items-center px-3 overflow-hidden">
                     {anime.genres ? (
                       anime.genres.slice(0, 3).map((genre, index) => (
