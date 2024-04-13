@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Logo from "../assets/Logofull.png";
+import Logo from "../assets/Logobluefull.png";
 import {
   Switch,
   Navbar,
@@ -58,11 +58,11 @@ const Navigationbar: React.FC<NavbarProps> = ({
         <NavbarBrand>
           <img
             src={Logo}
-            className="max-h-24 w-auto hidden md:block "
+            className="max-h-16 w-auto hidden md:block "
             alt="Animaxray"
           />
-          {/* <p className="text-4xl md:block sm:hidden font-bold  bg-gradient-to-r from-violet-900  to-violet-800 inline-block text-transparent bg-clip-text dark:{bg-gradient-to-r from-violet-500  via-violet-500 to-violet-500}">
-            ANIMAXRAY
+          {/* <p className="text-5xl md:block sm:hidden font-bold  bg-gradient-to-r from-white via-white to-white inline-block text-transparent bg-clip-text dark:{bg-gradient-to-r from-violet-500  via-violet-500 to-violet-500}">
+            AMX
           </p> */}
         </NavbarBrand>
       </NavbarContent>
