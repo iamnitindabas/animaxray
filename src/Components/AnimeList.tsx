@@ -40,17 +40,19 @@ const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
 
   return (
     <>
-      <Card className="bg-[#f5f6f9] dark:bg-[#1f232d] h-72 min-w-[500px]">
+      <Card className="bg-[#f5f6f9] dark:bg-[#1f232d] h-[320px] min-w-[500px]">
         <div className="grid grid-cols-[230px_auto] rounded-none ">
-          <Image
-            radius="none"
-            isZoomed
-            alt="Anime Poster"
-            className="h-[300px] w-[230px] object-cover object-center min-w-full  min-h-full "
-            src={singleAnimeData.images.jpg.large_image_url}
-          />
+          <div>
+            <Image
+              radius="none"
+              isZoomed
+              alt="Anime Poster"
+              className="h-[320px] w-[230px] object-cover object-center min-w-full  min-h-full "
+              src={singleAnimeData.images.jpg.large_image_url}
+            />
+          </div>
 
-          <div className="grid grid-cols-[100%] grid-rows-[auto_50px] gap-1.5 max-h-72">
+          <div className="grid grid-cols-[100%] grid-rows-[auto_50px] gap-1.5 max-h-[320px]">
             <div className="p-5 overflow-auto transition-all  text-[#5c728a]  dark:text-[#9fadbd]">
               <div className="grid grid-cols-2">
                 <div>
@@ -79,7 +81,7 @@ const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
                 {singleAnimeData.title}
               </h4>
 
-              <div className="line-clamp-4 overflow-hidden hover:line-clamp-none ">
+              <div className="line-clamp-5 overflow-hidden hover:line-clamp-none ">
                 <small className=" text-ellipsis overflow-hidden  ">
                   {singleAnimeData.synopsis
                     ? singleAnimeData.synopsis

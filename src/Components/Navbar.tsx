@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Logo from "../assets/Logobluefull.png";
+import Logo from "../assets/Logo.png";
 import {
   Switch,
   Navbar,
@@ -46,8 +46,9 @@ const Navigationbar: React.FC<NavbarProps> = ({
   };
   return (
     <Navbar
+      maxWidth="full"
       shouldHideOnScroll
-      className="h-24 bg-[#2b2d42]"
+      className="h-24 bg-[#2b2d42] "
       onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarContent>
@@ -58,7 +59,7 @@ const Navigationbar: React.FC<NavbarProps> = ({
         <NavbarBrand>
           <img
             src={Logo}
-            className="max-h-16 w-auto hidden md:block "
+            className="max-h-24 w-auto hidden md:block "
             alt="Animaxray"
           />
           {/* <p className="text-5xl md:block sm:hidden font-bold  bg-gradient-to-r from-white via-white to-white inline-block text-transparent bg-clip-text dark:{bg-gradient-to-r from-violet-500  via-violet-500 to-violet-500}">
@@ -108,7 +109,7 @@ const Navigationbar: React.FC<NavbarProps> = ({
             onModeChange(isDark);
           }}
           size="lg"
-          color="secondary"
+          color="warning"
           thumbIcon={({ isSelected, className }) =>
             isSelected ? (
               <SunIcon className={className} />
