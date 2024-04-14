@@ -28,13 +28,10 @@ const Navigationbar: React.FC<NavbarProps> = ({
 
   const menuItems = [
     "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
+    "Anime Dashboard",
+    "Top Anime",
+    "Seasonal anime",
+    "Settings",
     "Help & Feedback",
     "Log Out",
   ];
@@ -90,7 +87,7 @@ const Navigationbar: React.FC<NavbarProps> = ({
       <NavbarContent justify="end">
         <Input
           classNames={{
-            base: "h-14 w-[70vw] md:h-12 md:w-72 ",
+            base: "h-14 w-[64vw] sm:w-[75vw] md:h-12 md:w-72 ",
             mainWrapper: "h-full",
             input: "text-medium ",
             inputWrapper:

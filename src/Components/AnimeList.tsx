@@ -46,45 +46,56 @@ const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
 
   return (
     <>
-      <Card className="bg-[#f5f6f9] dark:bg-[#1f232d] h-[320px] min-w-[500px]">
-        <div className="grid grid-cols-[230px_auto] rounded-none ">
+      <Card className="bg-[#f5f6f9] dark:bg-[#1f232d] h-[250px] min-w-[400px] sm:h-[320px] sm:min-w-[500px]">
+        <div className="grid grid-cols-[170px_auto] sm:grid-cols-[230px_auto] rounded-none ">
           <div>
             <Image
               radius="none"
               isZoomed
               alt="Anime Poster"
-              className="h-[320px] w-[230px] object-cover object-center min-w-full  min-h-full "
+              className="h-[250px] w-[230px] sm:h-[320px] sm:w-[230px] object-cover object-center min-w-full  min-h-full "
               src={singleAnimeData.images.jpg.large_image_url}
             />
           </div>
 
-          <div className="grid grid-cols-[100%] grid-rows-[auto_50px] gap-1.5 max-h-[320px]">
+          <div className="grid gap-1.5 grid-cols-[100%] grid-rows-[auto_50px]  max-h-[250px] sm:grid-rows-[auto_50px]  sm:max-h-[320px]">
             <div className="p-5 overflow-auto transition-all  text-[#495b6e]  dark:text-[#9fadbd]">
               <div className="grid grid-cols-2">
-                <div>
+                <div className="flex flex-col items-start justify-center">
                   <p className="text-xs font-bold">
                     Episodes :
                     {singleAnimeData.episodes
                       ? singleAnimeData.episodes
                       : "N/A"}
                   </p>
-                  <p className="text-tiny font-bold">
+                  <p className="text-tiny font-bold hidden sm:block">
                     Duration:{" "}
                     {singleAnimeData.duration
                       ? singleAnimeData.duration
                       : "N/A"}
                   </p>
                 </div>
-                <div className="flex items-center justify-end gap-4">
+                <div className="flex items-center justify-end gap-5">
                   <div className="flex items-center justify-between ">
-                    <img src={heart} alt="" className="size-7 pr-2" />#
-                    {singleAnimeData.popularity
-                      ? singleAnimeData.popularity
-                      : "N/A"}
+                    <img
+                      src={heart}
+                      alt=""
+                      className="size-4 sm:size-7 sm:pr-2"
+                    />
+                    <p className="text-[15px] sm:text-lg">
+                      #
+                      {singleAnimeData.popularity
+                        ? singleAnimeData.popularity
+                        : "N/A"}
+                    </p>
                   </div>
                   <div className="flex items-center justify-evenly">
-                    <img src={star} alt="" className="size-7 pr-2" />
-                    <p>
+                    <img
+                      src={star}
+                      alt=""
+                      className="size-4 sm:size-7 sm:pr-2"
+                    />
+                    <p className="text-[15px] pl-1 sm:text-lg sm:pl-0 ">
                       {singleAnimeData.score ? singleAnimeData.score : "N/A"}
                     </p>
                   </div>
@@ -94,7 +105,7 @@ const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
                 {singleAnimeData.title}
               </h4>
 
-              <div className="line-clamp-5 overflow-hidden hover:line-clamp-none ">
+              <div className="line-clamp-3  overflow-hidden sm:line-clamp-5 hover:line-clamp-none ">
                 <small className=" text-ellipsis overflow-hidden  ">
                   {singleAnimeData.synopsis
                     ? singleAnimeData.synopsis
