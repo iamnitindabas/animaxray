@@ -118,7 +118,7 @@ const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
                 singleAnimeData.genres.slice(0, 3).map((genre, index) => (
                   <div key={index} className="flex align-bottom flex-wrap">
                     <Button
-                      className="mr-1 mb-1 rounded-full h-6 w-8 sm:h-8 sm:w-20"
+                      className="mr-1 mb-1 rounded-full h-6 w-10 sm:h-8 sm:w-20"
                       size="sm"
                       href={genre.url}
                       as={Link}
