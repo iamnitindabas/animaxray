@@ -58,8 +58,8 @@ const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
             />
           </div>
 
-          <div className="grid  gap-1 sm:gap-1.5 grid-cols-[100%] grid-rows-[auto_40px]  max-h-[200px] sm:grid-rows-[auto_50px]  sm:max-h-[320px]">
-            <div className="p-5 overflow-auto transition-all  text-[#495b6e]  dark:text-[#9fadbd]">
+          <div className="grid  gap-1 sm:gap-1.5 grid-cols-[100%] grid-rows-[auto_40px]  max-h-[200px] sm:grid-rows-[auto_50px]  sm:max-h-[320px] ">
+            <div className="p-5 overflow-auto transition-all max-h-[150px] sm:max-h-[270px] text-[#495b6e]  dark:text-[#9fadbd]">
               <div className="grid grid-cols-2">
                 <div className="flex flex-col items-start justify-center">
                   <p className="text-xs font-bold">
