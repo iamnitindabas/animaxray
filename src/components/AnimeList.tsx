@@ -1,48 +1,48 @@
-import React from "react";
-import { Card, Image, Button, Link } from "@nextui-org/react";
-import star from "../assets/star.svg";
-import heart from "../assets/red-heart.svg";
+import React from 'react'
+import { Card, Image, Button, Link } from '@nextui-org/react'
+import star from '../assets/star.svg'
+import heart from '../assets/red-heart.svg'
 
 interface genre {
-  name: string;
-  url: string;
+  name: string
+  url: string
 }
 
 interface AnimeListProps {
   singleAnimeData: {
-    title: string;
-    synopsis: string;
-    episodes: number;
-    duration: string;
-    popularity: number;
-    score: number;
-    genres: genre[] | null;
+    title: string
+    synopsis: string
+    episodes: number
+    duration: string
+    popularity: number
+    score: number
+    genres: genre[] | null
     trailer: {
-      youtube_id: string;
-    };
+      youtube_id: string
+    }
     images: {
       jpg: {
         // Mark jpg property as optional
-        large_image_url: string;
-      };
-    };
-  };
+        large_image_url: string
+      }
+    }
+  }
 }
 
 const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
   const colorType: (
-    | "primary"
-    | "secondary"
-    | "danger"
-    | "warning"
-    | "success"
-  )[] = ["primary", "secondary", "danger", "warning", "success"];
+    | 'primary'
+    | 'secondary'
+    | 'danger'
+    | 'warning'
+    | 'success'
+  )[] = ['primary', 'secondary', 'danger', 'warning', 'success']
 
   const getRandomColor = (): (typeof colorType)[number] => {
-    const randomIndex = Math.floor(Math.random() * colorType.length);
-    return colorType[randomIndex];
-  };
-  const randomColor = getRandomColor();
+    const randomIndex = Math.floor(Math.random() * colorType.length)
+    return colorType[randomIndex]
+  }
+  const randomColor = getRandomColor()
 
   return (
     <>
@@ -66,13 +66,13 @@ const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
                     Episodes :
                     {singleAnimeData.episodes
                       ? singleAnimeData.episodes
-                      : "N/A"}
+                      : 'N/A'}
                   </p>
                   <p className="text-tiny font-bold">
-                    Duration:{" "}
+                    Duration:{' '}
                     {singleAnimeData.duration
                       ? singleAnimeData.duration
-                      : "N/A"}
+                      : 'N/A'}
                   </p>
                 </div>
                 <div className="flex items-center justify-end gap-4">
@@ -80,12 +80,12 @@ const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
                     <img src={heart} alt="" className="size-7 pr-2" />#
                     {singleAnimeData.popularity
                       ? singleAnimeData.popularity
-                      : "N/A"}
+                      : 'N/A'}
                   </div>
                   <div className="flex items-center justify-evenly">
                     <img src={star} alt="" className="size-7 pr-2" />
                     <p>
-                      {singleAnimeData.score ? singleAnimeData.score : "N/A"}
+                      {singleAnimeData.score ? singleAnimeData.score : 'N/A'}
                     </p>
                   </div>
                 </div>
@@ -98,7 +98,7 @@ const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
                 <small className=" text-ellipsis overflow-hidden  ">
                   {singleAnimeData.synopsis
                     ? singleAnimeData.synopsis
-                    : "No description available."}
+                    : 'No description available.'}
                 </small>
               </div>
             </div>
@@ -126,7 +126,7 @@ const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
         </div>
       </Card>
     </>
-  );
-};
+  )
+}
 
-export default AnimeList;
+export default AnimeList

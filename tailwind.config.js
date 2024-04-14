@@ -1,35 +1,35 @@
-const { nextui } = require("@nextui-org/react");
+const { nextui } = require('@nextui-org/react')
 
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    './index.html',
+    './src/**/*.{js,ts,jsx,tsx}',
+    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
       backgroundImage: {
-        lightbg: "url(../src/assets/bglight.svg)",
-        darkbg: "url(../src/assets/bgdark.svg)",
+        lightbg: 'url(../src/assets/bglight.svg)',
+        darkbg: 'url(../src/assets/bgdark.svg)',
       },
     },
   },
-  darkMode: "class",
+  darkMode: 'class',
   plugins: [
     nextui({
       themes: {
         light: {
           colors: {
-            primary: "#0072f5",
+            primary: '#0072f5',
           },
         },
         dark: {
           colors: {
-            primary: "#0072f5",
+            primary: '#0072f5',
           },
         },
       },
     }),
   ],
-};
+}
