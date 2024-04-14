@@ -45,7 +45,7 @@ const Navigationbar: React.FC<NavbarProps> = ({
     <Navbar
       maxWidth="full"
       shouldHideOnScroll
-      className="h-24 bg-[#2b2d42] "
+      className="h-20 sm:h-22 md:h-24 bg-[#2b2d42] "
       onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarContent>
@@ -87,7 +87,7 @@ const Navigationbar: React.FC<NavbarProps> = ({
       <NavbarContent justify="end">
         <Input
           classNames={{
-            base: "h-14 w-[64vw] sm:w-[75vw] md:h-12 md:w-72 ",
+            base: "h-12 w-[57vw] sm:w-[75vw] md:w-72 ",
             mainWrapper: "h-full",
             input: "text-medium ",
             inputWrapper:
