@@ -30,9 +30,15 @@ interface AnimeListProps {
 }
 
 const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
-  const colorType = ["primary", "secondary", "danger", "warning", "success"];
+  const colorType: (
+    | "primary"
+    | "secondary"
+    | "danger"
+    | "warning"
+    | "success"
+  )[] = ["primary", "secondary", "danger", "warning", "success"];
 
-  const getRandomColor = () => {
+  const getRandomColor = (): (typeof colorType)[number] => {
     const randomIndex = Math.floor(Math.random() * colorType.length);
     return colorType[randomIndex];
   };

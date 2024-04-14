@@ -1,5 +1,3 @@
-import React from "react";
-
 const SunIcon = (props: any) => (
   <svg
     aria-hidden="true"
