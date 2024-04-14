@@ -17,7 +17,9 @@ const ApiHandler: React.FC<ApiHandlerProps> = ({
     const fetchData = async () => {
       try {
         const res = await fetch(
-          searchQuery ? `/api/anime?q=${searchQuery}&sfw` : `/api/seasons/now`
+          searchQuery
+            ? `https://api.jikan.moe/v4/anime?q=${searchQuery}&sfw`
+            : `https://api.jikan.moe/v4/seasons/now`
         );
         const resData = await res.json();
         onDataFetch(resData.data);
