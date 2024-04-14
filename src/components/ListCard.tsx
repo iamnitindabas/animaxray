@@ -1,35 +1,9 @@
-import React from 'react'
-import { Card, Image, Button, Link } from '@nextui-org/react'
-import star from '../assets/star.svg'
+import { Button, Card, Image, Link } from '@nextui-org/react'
 import heart from '../assets/red-heart.svg'
+import star from '../assets/star.svg'
+import { AnimeListProps } from '../types'
 
-interface genre {
-  name: string
-  url: string
-}
-
-interface AnimeListProps {
-  singleAnimeData: {
-    title: string
-    synopsis: string
-    episodes: number
-    duration: string
-    popularity: number
-    score: number
-    genres: genre[] | null
-    trailer: {
-      youtube_id: string
-    }
-    images: {
-      jpg: {
-        // Mark jpg property as optional
-        large_image_url: string
-      }
-    }
-  }
-}
-
-const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
+const ListCard = ({ animeData }: { animeData: AnimeListProps }) => {
   const colorType: (
     | 'primary'
     | 'secondary'
@@ -54,7 +28,7 @@ const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
               isZoomed
               alt="Anime Poster"
               className="h-[320px] w-[230px] object-cover object-center min-w-full  min-h-full "
-              src={singleAnimeData.images.jpg.large_image_url}
+              src={animeData.images.jpg.large_image_url}
             />
           </div>
 
@@ -63,48 +37,36 @@ const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
               <div className="grid grid-cols-2">
                 <div>
                   <p className="text-xs font-bold">
-                    Episodes :
-                    {singleAnimeData.episodes
-                      ? singleAnimeData.episodes
-                      : 'N/A'}
+                    Episodes :{animeData.episodes ? animeData.episodes : 'N/A'}
                   </p>
                   <p className="text-tiny font-bold">
-                    Duration:{' '}
-                    {singleAnimeData.duration
-                      ? singleAnimeData.duration
-                      : 'N/A'}
+                    Duration: {animeData.duration ? animeData.duration : 'N/A'}
                   </p>
                 </div>
                 <div className="flex items-center justify-end gap-4">
                   <div className="flex items-center justify-between ">
                     <img src={heart} alt="" className="size-7 pr-2" />#
-                    {singleAnimeData.popularity
-                      ? singleAnimeData.popularity
-                      : 'N/A'}
+                    {animeData.popularity ? animeData.popularity : 'N/A'}
                   </div>
                   <div className="flex items-center justify-evenly">
                     <img src={star} alt="" className="size-7 pr-2" />
-                    <p>
-                      {singleAnimeData.score ? singleAnimeData.score : 'N/A'}
-                    </p>
+                    <p>{animeData.score ? animeData.score : 'N/A'}</p>
                   </div>
                 </div>
               </div>
-              <h4 className="font-bold text-2xl py-2">
-                {singleAnimeData.title}
-              </h4>
+              <h4 className="font-bold text-2xl py-2">{animeData.title}</h4>
 
               <div className="line-clamp-5 overflow-hidden hover:line-clamp-none ">
                 <small className=" text-ellipsis overflow-hidden  ">
-                  {singleAnimeData.synopsis
-                    ? singleAnimeData.synopsis
+                  {animeData.synopsis
+                    ? animeData.synopsis
                     : 'No description available.'}
                 </small>
               </div>
             </div>
             <div className="flex items-center px-3 pt-1 overflow-hidden  bg-[#e5e9f5] dark:bg-[#191d26]">
-              {singleAnimeData.genres ? (
-                singleAnimeData.genres.slice(0, 3).map((genre, index) => (
+              {animeData.genres ? (
+                animeData.genres.slice(0, 3).map((genre, index) => (
                   <div key={index} className="flex align-bottom flex-wrap">
                     <Button
                       className="mr-1 mb-1 rounded-full"
@@ -129,4 +91,4 @@ const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
   )
 }
 
-export default AnimeList
+export default ListCard
