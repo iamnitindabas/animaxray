@@ -20,6 +20,8 @@ interface NavbarProps {
   onModeChange: (Value: boolean) => void;
 }
 
+// TODO: use navbar search to redirect to anime url and then fetch the data.
+
 const Navigationbar: React.FC<NavbarProps> = ({
   onDataFetch,
   onModeChange,
@@ -143,4 +145,4 @@ const Navigationbar: React.FC<NavbarProps> = ({
   );
 };
 
-export default Navigationbar;
+export default Navigationbar
