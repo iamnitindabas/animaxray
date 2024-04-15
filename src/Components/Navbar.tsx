@@ -15,14 +15,26 @@ import ApiHandler from "./ApiHandler";
 import MoonIcon from "../assets/MoonIcon.tsx";
 import SunIcon from "../assets/SunIcon.tsx";
 
+interface pageData {
+  last_visible_page: number;
+  has_next_page: boolean;
+  current_page: number;
+  items: {
+    count: number;
+    total: number;
+    per_page: number;
+  };
+}
 interface NavbarProps {
-  onDataFetch: (data: []) => void;
+  onDataFetch: (apidata: [], search: string) => void;
+  onPageFetch: (pageData: pageData) => void;
   onModeChange: (Value: boolean) => void;
 }
 
 const Navigationbar: React.FC<NavbarProps> = ({
   onDataFetch,
   onModeChange,
+  onPageFetch,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -38,8 +50,13 @@ const Navigationbar: React.FC<NavbarProps> = ({
   const [search, setSearch] = useState<string>("");
   const [isDark, setIsDark] = useState<boolean>(true);
 
-  const handleNavDataFetch = (data: []) => {
-    onDataFetch(data);
+  const handleNavDataFetch = (apidata: []) => {
+    onDataFetch(apidata, search);
+    console.log("handle nav data fetch executed");
+  };
+  const handlePageFetch = (pageData: pageData) => {
+    onPageFetch(pageData);
+    console.log("handle nav page fetch executed");
   };
   return (
     <Navbar
@@ -98,7 +115,11 @@ const Navigationbar: React.FC<NavbarProps> = ({
           type="search"
           onChange={(e) => setSearch(e.target.value)}
         />
-        <ApiHandler searchQuery={search} onDataFetch={handleNavDataFetch} />
+        <ApiHandler
+          searchQuery={search}
+          onDataFetch={handleNavDataFetch}
+          onPageFetch={handlePageFetch}
+        />
 
         <Switch
           onChange={() => {

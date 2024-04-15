@@ -26,7 +26,7 @@ const routes = [
     path: "/anime/seasons",
     element: <SeasonSelection />,
     errorElement: <NotFoundPage />,
-    Children: [
+    children: [
       {
         path: "/anime/seasons/:year/:season",
         element: <SeasonLists />,
