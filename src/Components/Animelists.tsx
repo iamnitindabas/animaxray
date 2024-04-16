@@ -4,6 +4,7 @@ import ApiHandler from "./ApiHandler";
 import { useEffect, useState } from "react";
 
 interface AnimeListProps {
+  seachQuery?: string;
   multiAnimeData: [] | null;
   paginationData: pageobject | null;
 }
@@ -19,6 +20,7 @@ interface pageobject {
 }
 
 const Animelists: React.FC<AnimeListProps> = ({
+  seachQuery,
   multiAnimeData,
   paginationData,
 }) => {
@@ -61,6 +63,7 @@ const Animelists: React.FC<AnimeListProps> = ({
         <p>no page data available</p>
       )}
       <ApiHandler
+        searchQuery={seachQuery}
         page={page}
         onDataFetch={handleDataFetch}
         onPageFetch={handlePageFetch}

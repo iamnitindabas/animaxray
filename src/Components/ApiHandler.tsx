@@ -35,7 +35,7 @@ const ApiHandler: React.FC<ApiHandlerProps> = ({
         const res = await fetch(
           searchQuery
             ? page
-              ? `https://api.jikan.moe/v4/anime?q=${searchQuery}&sfw?page=${page}`
+              ? `https://api.jikan.moe/v4/anime?q=${searchQuery}&sfw&page=${page}`
               : `https://api.jikan.moe/v4/anime?q=${searchQuery}&sfw`
             : page
             ? `https://api.jikan.moe/v4/seasons/now?page=${page}`

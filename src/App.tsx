@@ -21,10 +21,11 @@ const App: React.FC = () => {
   const [animeData, setAnimeData] = useState<[] | null>(null);
   const [pageData, setPageData] = useState<pageData | null>();
   const [isDark, setIsDark] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>();
 
-  const handleDataFetch = (apidata: []) => {
+  const handleDataFetch = (apidata: [], searchQuery: string) => {
     setAnimeData(apidata);
-
+    setSearchQuery(searchQuery);
     console.log(apidata);
     console.log("handle app data fetch executed");
   };
@@ -50,6 +51,7 @@ const App: React.FC = () => {
             />
             <div className="p-3">
               <AnimeLists
+                seachQuery={searchQuery}
                 multiAnimeData={animeData}
                 paginationData={pageData!}
               />
