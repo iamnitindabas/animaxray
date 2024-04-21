@@ -23,12 +23,12 @@ interface pageData {
 const SeasonSelection: React.FC = () => {
   const [animeData, setAnimeData] = useState<[] | null>(null);
   const [pageData, setPageData] = useState<pageData | null>();
-  const [selectedKeys, setSelectedKeys] = React.useState(new Set(["text"]));
+  // const [selectedKeys, setSelectedKeys] = React.useState(new Set(["text"]));
 
-  const selectedValue = React.useMemo(
-    () => Array.from(selectedKeys).join(", ").replace(/_/g, " "),
-    [selectedKeys]
-  );
+  // const selectedValue = React.useMemo(
+  //   () => Array.from(selectedKeys).join(", ").replace(/_/g, " "),
+  //   [selectedKeys]
+  // );
   const handleDataFetch = (apidata: []) => {
     setAnimeData(apidata);
     console.log(apidata);
@@ -79,12 +79,12 @@ const SeasonSelection: React.FC = () => {
                 color="warning"
                 className="text-black dark:text-white"
               >
-                {selectedValue}
+                selectedValue
               </Button>
             </DropdownTrigger>
             <DropdownMenu
               selectionMode="single"
-              selectedKeys={selectedKeys}
+              // selectedKeys={selectedKeys}
               // onSelectionChange={setSelectedKeys}
               aria-label="Static Actions "
             >
