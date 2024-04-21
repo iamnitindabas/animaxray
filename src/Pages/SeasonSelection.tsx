@@ -85,7 +85,7 @@ const SeasonSelection: React.FC = () => {
             <DropdownMenu
               selectionMode="single"
               selectedKeys={selectedKeys}
-              onSelectionChange={setSelectedKeys}
+              // onSelectionChange={setSelectedKeys}
               aria-label="Static Actions "
             >
               <DropdownItem key="Winter" color="warning">
