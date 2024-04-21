@@ -19,7 +19,7 @@ const Homepage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>();
   const [search, setSearch] = useState<string>("");
 
-  const handleDataFetch = (apidata: [], searchQuery: string) => {
+  const handleDataFetch = (apidata: [], searchQuery?: string) => {
     setAnimeData(apidata);
     setSearchQuery(searchQuery);
     console.log(apidata);

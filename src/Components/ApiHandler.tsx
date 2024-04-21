@@ -8,7 +8,7 @@ interface ApiHandlerProps {
   seasonYear?: number;
   searchQuery?: string;
   seasonSearch?: boolean;
-  onDataFetch: (apidata: []) => void;
+  onDataFetch: (apidata: [], searchQuery?: string) => void;
   onPageFetch: (pageData: pageData) => void;
 }
 interface pageData {
