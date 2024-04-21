@@ -3,41 +3,28 @@ import Logo from "../assets/Logo.png";
 import {
   Switch,
   Navbar,
+  Link,
   NavbarBrand,
   NavbarContent,
   NavbarMenuToggle,
   NavbarMenu,
+  NavbarItem,
   NavbarMenuItem,
-  Link,
-  Input,
 } from "@nextui-org/react";
-import ApiHandler from "./ApiHandler";
+import { NavLink as Nlink } from "react-router-dom";
 import MoonIcon from "../assets/MoonIcon.tsx";
 import SunIcon from "../assets/SunIcon.tsx";
 
-interface pageData {
-  last_visible_page: number;
-  has_next_page: boolean;
-  current_page: number;
-  items: {
-    count: number;
-    total: number;
-    per_page: number;
-  };
-}
 interface NavbarProps {
-  onDataFetch: (apidata: [], search: string) => void;
-  onPageFetch: (pageData: pageData) => void;
   onModeChange: (Value: boolean) => void;
 }
 
-const Navigationbar: React.FC<NavbarProps> = ({
-  onDataFetch,
-  onModeChange,
-  onPageFetch,
-}) => {
+const Navigationbar: React.FC<NavbarProps> = ({ onModeChange }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const linkClass = ({ isActive }: { isActive: boolean }) =>
+    isActive
+      ? "bg-sky-600 text-white hover:bg-sky-700 hover:text-white rounded-full px-3 py-2"
+      : " text-white hover:bg-gray-900 hover:text-white rounded-full px-3 py-2";
   const menuItems = [
     "Profile",
     "Anime Dashboard",
@@ -47,40 +34,31 @@ const Navigationbar: React.FC<NavbarProps> = ({
     "Help & Feedback",
     "Log Out",
   ];
-  const [search, setSearch] = useState<string>("");
   const [isDark, setIsDark] = useState<boolean>(true);
 
-  const handleNavDataFetch = (apidata: []) => {
-    onDataFetch(apidata, search);
-    console.log("handle nav data fetch executed");
-  };
-  const handlePageFetch = (pageData: pageData) => {
-    onPageFetch(pageData);
-    console.log("handle nav page fetch executed");
-  };
   return (
     <Navbar
       maxWidth="full"
       shouldHideOnScroll
-      className="h-20 sm:h-22 md:h-24 bg-[#2b2d42] "
+      className="h-20 hidden md:flex sm:h-22 md:h-24 bg-[#2b2d42] "
       onMenuOpenChange={setIsMenuOpen}
     >
-      <NavbarContent>
+      <NavbarContent justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className=" md:hidden text-white "
         />
         <NavbarBrand>
-          <img
-            src={Logo}
-            className="max-h-24 w-auto hidden md:block "
-            alt="Animaxray"
-          />
-          {/* <p className="text-5xl md:block sm:hidden font-bold  bg-gradient-to-r from-white via-white to-white inline-block text-transparent bg-clip-text dark:{bg-gradient-to-r from-violet-500  via-violet-500 to-violet-500}">
-            AMX
-          </p> */}
+          <Nlink color="foreground" to="/">
+            <img
+              src={Logo}
+              className="max-h-24 w-auto hidden md:block "
+              alt="Animaxray"
+            />
+          </Nlink>
         </NavbarBrand>
       </NavbarContent>
+
       <NavbarMenu>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
@@ -102,25 +80,21 @@ const Navigationbar: React.FC<NavbarProps> = ({
         ))}
       </NavbarMenu>
       <NavbarContent justify="end">
-        <Input
-          classNames={{
-            base: "h-12 w-[57vw] sm:w-[75vw] md:w-72 ",
-            mainWrapper: "h-full",
-            input: "text-medium ",
-            inputWrapper:
-              "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-          }}
-          placeholder="Type to search anime..."
-          size="md"
-          type="search"
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <ApiHandler
-          searchQuery={search}
-          onDataFetch={handleNavDataFetch}
-          onPageFetch={handlePageFetch}
-        />
-
+        <NavbarItem>
+          <Nlink to="/seasons" className={linkClass}>
+            Seasons
+          </Nlink>
+        </NavbarItem>
+        <NavbarItem>
+          <Nlink to="/topanime" className={linkClass}>
+            Top Anime
+          </Nlink>
+        </NavbarItem>
+        <NavbarItem>
+          <Nlink to="/upcoming" className={linkClass}>
+            Upcoming Anime
+          </Nlink>
+        </NavbarItem>
         <Switch
           onChange={() => {
             setIsDark((prevState: boolean) => !prevState);

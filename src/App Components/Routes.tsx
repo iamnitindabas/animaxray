@@ -1,43 +1,55 @@
 // routesConfig.js
-import App from "../App";
+
 import AnimeDetails from "../Pages/AnimeDetails";
 import NotFoundPage from "../Pages/NotFoundPage";
 import SeasonLists from "../Pages/SeasonLists";
 import SeasonSelection from "../Pages/SeasonSelection";
 import TopAnime from "../Pages/TopAnime";
+import Homepage from "../Pages/Homepage";
+import MainLayout from "../Layouts/MainLayout";
 
 const routes = [
   {
     path: "/",
-    element: <App />,
-    errorElement: <NotFoundPage />,
-  },
-  {
-    path: "/anime/:malid/:name",
-    element: <AnimeDetails />,
-    errorElement: <NotFoundPage />,
-  },
-  {
-    path: "/anime/top",
-    element: <TopAnime />,
-    errorElement: <NotFoundPage />,
-  },
-  {
-    path: "/anime/seasons",
-    element: <SeasonSelection />,
+    element: <MainLayout />,
     errorElement: <NotFoundPage />,
     children: [
       {
-        path: "/anime/seasons/:year/:season",
+        index: true,
+        element: <Homepage />,
+      },
+      {
+        path: "/anime/:malid",
+        element: <AnimeDetails />,
+        errorElement: <NotFoundPage />,
+      },
+      {
+        path: "/topanime",
+        element: <TopAnime />,
+        errorElement: <NotFoundPage />,
+      },
+      {
+        path: "/seasons",
+        element: <SeasonSelection />,
+        errorElement: <NotFoundPage />,
+        children: [
+          {
+            path: "/seasons/:year/",
+            element: <SeasonLists />,
+            errorElement: <NotFoundPage />,
+          },
+        ],
+      },
+      {
+        path: "/upcoming",
         element: <SeasonLists />,
         errorElement: <NotFoundPage />,
       },
     ],
   },
   {
-    path: "/anime/seasons/upcoming",
-    element: <SeasonLists />,
-    errorElement: <NotFoundPage />,
+    path: "*",
+    element: <NotFoundPage />,
   },
 ];
 

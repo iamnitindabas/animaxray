@@ -4,7 +4,10 @@ import React, { useEffect, useState } from "react";
 
 interface ApiHandlerProps {
   page?: number;
+  season?: string;
+  seasonYear?: number;
   searchQuery?: string;
+  seasonSearch?: boolean;
   onDataFetch: (apidata: []) => void;
   onPageFetch: (pageData: pageData) => void;
 }
@@ -21,6 +24,9 @@ interface pageData {
 
 const ApiHandler: React.FC<ApiHandlerProps> = ({
   searchQuery,
+  season,
+  seasonYear,
+  seasonSearch,
   page,
   onDataFetch,
   onPageFetch,
@@ -33,7 +39,9 @@ const ApiHandler: React.FC<ApiHandlerProps> = ({
       // setIsLoading(true);
       try {
         const res = await fetch(
-          searchQuery
+          seasonSearch
+            ? `https://api.jikan.moe/v4/seasons/${seasonYear}/${season}`
+            : searchQuery
             ? page
               ? `https://api.jikan.moe/v4/anime?q=${searchQuery}&sfw&page=${page}`
               : `https://api.jikan.moe/v4/anime?q=${searchQuery}&sfw`

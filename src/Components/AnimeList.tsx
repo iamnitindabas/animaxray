@@ -9,6 +9,7 @@ interface genre {
 }
 
 interface AnimeListProps {
+  smallCards?: boolean;
   singleAnimeData: {
     title: string;
     synopsis: string;
@@ -29,7 +30,10 @@ interface AnimeListProps {
   };
 }
 
-const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
+const AnimeList: React.FC<AnimeListProps> = ({
+  singleAnimeData,
+  smallCards,
+}) => {
   const colorType: (
     | "primary"
     | "secondary"
@@ -44,7 +48,28 @@ const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
   };
   const randomColor = getRandomColor();
 
-  return (
+  return smallCards ? (
+    <>
+      <div className="mb-5">
+        <Card radius="sm" className="bg-[#f5f6f9] dark:bg-[#1f232d] w-fit">
+          <div>
+            <Image
+              radius="none"
+              isZoomed
+              alt="Anime Poster"
+              className="h-[170px] w-[130px] sm:h-[320px] sm:w-[230px] object-cover object-center min-w-full  min-h-full "
+              src={singleAnimeData.images.jpg.large_image_url}
+            />
+          </div>
+        </Card>
+        <div className="line-clamp-2">
+          <p className="font-bold text-lg text-[#576f84] max-w-[230px]">
+            {singleAnimeData.title}
+          </p>
+        </div>
+      </div>
+    </>
+  ) : (
     <>
       <Card className="bg-[#f5f6f9] dark:bg-[#1f232d] h-[200px] min-w-[345px] sm:h-[320px] sm:min-w-[500px]">
         <div className="grid grid-cols-[130px_auto] sm:grid-cols-[230px_auto] rounded-none ">
@@ -101,16 +126,17 @@ const AnimeList: React.FC<AnimeListProps> = ({ singleAnimeData }) => {
                   </div>
                 </div>
               </div>
-              <h4 className="font-bold text-md leading-4 py-2 sm:text-2xl sm:leading-8">
-                {singleAnimeData.title}
-              </h4>
-
-              <div className="line-clamp-3 leading-4 overflow-hidden sm:leading-6 sm:line-clamp-5 hover:line-clamp-none ">
-                <small className=" text-ellipsis overflow-hidden">
-                  {singleAnimeData.synopsis
-                    ? singleAnimeData.synopsis
-                    : "No description available."}
-                </small>
+              <div className="">
+                <h4 className="line-clamp-2 hover:line-clamp-none transition-all font-bold text-md leading-4 py-2 sm:text-2xl sm:leading-8">
+                  {singleAnimeData.title}
+                </h4>
+                <div className="line-clamp-3 leading-4 overflow-hidden sm:leading-6 sm:line-clamp-5 hover:line-clamp-none ">
+                  <small className=" text-ellipsis overflow-hidden">
+                    {singleAnimeData.synopsis
+                      ? singleAnimeData.synopsis
+                      : "No description available."}
+                  </small>
+                </div>
               </div>
             </div>
             <div className="flex items-center px-3 pt-1 overflow-hidden  bg-[#e5e9f5] dark:bg-[#191d26]">
