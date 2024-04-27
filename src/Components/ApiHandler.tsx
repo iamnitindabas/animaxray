@@ -1,6 +1,7 @@
 // ApiHandler.tsx
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { LoadingContext } from "../Contexts/Context";
 
 interface ApiHandlerProps {
   page?: number;
@@ -8,6 +9,7 @@ interface ApiHandlerProps {
   seasonYear?: number;
   searchQuery?: string;
   seasonSearch?: boolean;
+  upcomingAnime?: boolean;
   onDataFetch: (apidata: [], searchQuery?: string) => void;
   onPageFetch: (pageData: pageData) => void;
 }
@@ -21,25 +23,26 @@ interface pageData {
     per_page: number;
   };
 }
-
 const ApiHandler: React.FC<ApiHandlerProps> = ({
   searchQuery,
   season,
   seasonYear,
   seasonSearch,
   page,
+  upcomingAnime,
   onDataFetch,
   onPageFetch,
 }) => {
   const [typingTimeout, setTypingTimeout] = useState<number | null>(null);
-  // const [isLoading, setIsLoading] = useState<boolean>(false);
-
+  const { setIsLoading } = useContext(LoadingContext);
   useEffect(() => {
     const fetchData = async () => {
-      // setIsLoading(true);
+      setIsLoading(true);
       try {
         const res = await fetch(
-          seasonSearch
+          upcomingAnime
+            ? `https://api.jikan.moe/v4/seasons/upcoming`
+            : seasonSearch
             ? `https://api.jikan.moe/v4/seasons/${seasonYear}/${season}`
             : searchQuery
             ? page
@@ -52,13 +55,12 @@ const ApiHandler: React.FC<ApiHandlerProps> = ({
         const resData = await res.json();
         onDataFetch(resData.data);
         onPageFetch(resData.pagination);
-        console.log(searchQuery, page);
+        console.log(searchQuery, page, upcomingAnime);
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
       }
-      // finally {
-      //   // setIsLoading(false);
-      // }
     };
 
     if (typingTimeout) {

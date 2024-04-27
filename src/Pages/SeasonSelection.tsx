@@ -1,24 +1,14 @@
+import {
+  Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from "@nextui-org/react";
 import React, { useState } from "react";
 import AnimeLists from "../Components/Animelists";
 import ApiHandler from "../Components/ApiHandler";
-import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-  Button,
-} from "@nextui-org/react";
-
-interface pageData {
-  last_visible_page: number;
-  has_next_page: boolean;
-  current_page: number;
-  items: {
-    count: number;
-    total: number;
-    per_page: number;
-  };
-}
+import { pageData } from "../Types/Types";
 
 const SeasonSelection: React.FC = () => {
   const [animeData, setAnimeData] = useState<[] | null>(null);
@@ -46,7 +36,7 @@ const SeasonSelection: React.FC = () => {
         <div className="font-bold text-[#647380] text-4xl text-center md:text-left p-4 ">
           <p>Seasonal Anime</p>
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-4 justify-center">
           <Dropdown>
             <DropdownTrigger>
               <Button

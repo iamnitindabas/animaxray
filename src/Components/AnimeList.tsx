@@ -1,34 +1,9 @@
-import React from "react";
-import { Card, Image, Button, Link } from "@nextui-org/react";
+import { useContext } from "react";
+import { Card, Image, Button, Link, Skeleton } from "@nextui-org/react";
 import star from "../assets/star.svg";
 import heart from "../assets/red-heart.svg";
-
-interface genre {
-  name: string;
-  url: string;
-}
-
-interface AnimeListProps {
-  smallCards?: boolean;
-  singleAnimeData: {
-    title: string;
-    synopsis: string;
-    episodes: number;
-    duration: string;
-    popularity: number;
-    score: number;
-    genres: genre[] | null;
-    trailer: {
-      youtube_id: string;
-    };
-    images: {
-      jpg: {
-        // Mark jpg property as optional
-        large_image_url: string;
-      };
-    };
-  };
-}
+import { AnimeListProps } from "../Types/Types";
+import { LoadingContext } from "../Contexts/Context";
 
 const AnimeList: React.FC<AnimeListProps> = ({
   singleAnimeData,
@@ -41,7 +16,7 @@ const AnimeList: React.FC<AnimeListProps> = ({
     | "warning"
     | "success"
   )[] = ["primary", "secondary", "danger", "warning", "success"];
-
+  const { isLoading } = useContext(LoadingContext);
   const getRandomColor = (): (typeof colorType)[number] => {
     const randomIndex = Math.floor(Math.random() * colorType.length);
     return colorType[randomIndex];
@@ -49,26 +24,47 @@ const AnimeList: React.FC<AnimeListProps> = ({
   const randomColor = getRandomColor();
 
   return smallCards ? (
-    <>
-      <div className="mb-5">
-        <Card radius="sm" className="bg-[#f5f6f9] dark:bg-[#1f232d] w-fit">
-          <div>
-            <Image
-              radius="none"
-              isZoomed
-              alt="Anime Poster"
-              className="h-[170px] w-[130px] sm:h-[320px] sm:w-[230px] object-cover object-center min-w-full  min-h-full "
-              src={singleAnimeData.images.jpg.large_image_url}
-            />
+    isLoading ? (
+      <>
+        <Card className="w-[200px] space-y-5 p-4" radius="lg">
+          <Skeleton className="rounded-lg">
+            <div className="h-24 rounded-lg bg-default-300"></div>
+          </Skeleton>
+          <div className="space-y-3">
+            <Skeleton className="w-3/5 rounded-lg">
+              <div className="h-3 w-3/5 rounded-lg bg-default-200"></div>
+            </Skeleton>
+            <Skeleton className="w-4/5 rounded-lg">
+              <div className="h-3 w-4/5 rounded-lg bg-default-200"></div>
+            </Skeleton>
+            <Skeleton className="w-2/5 rounded-lg">
+              <div className="h-3 w-2/5 rounded-lg bg-default-300"></div>
+            </Skeleton>
           </div>
         </Card>
-        <div className="line-clamp-2">
-          <p className="font-bold text-lg text-[#576f84] max-w-[230px]">
-            {singleAnimeData.title}
-          </p>
+      </>
+    ) : (
+      <>
+        <div className="mb-5">
+          <Card radius="sm" className="bg-[#f5f6f9] dark:bg-[#1f232d] w-fit">
+            <div>
+              <Image
+                radius="none"
+                isZoomed
+                alt="Anime Poster"
+                className="h-[170px] w-[130px] sm:h-[320px] sm:w-[230px] object-cover object-center min-w-full  min-h-full "
+                src={singleAnimeData.images.jpg.large_image_url}
+              />
+            </div>
+          </Card>
+          <div className="line-clamp-2">
+            <p className="font-bold text-lg text-[#576f84] max-w-[230px]">
+              {singleAnimeData.title}
+            </p>
+          </div>
         </div>
-      </div>
-    </>
+      </>
+    )
   ) : (
     <>
       <Card className="bg-[#f5f6f9] dark:bg-[#1f232d] h-[200px] min-w-[345px] sm:h-[320px] sm:min-w-[500px]">
@@ -156,7 +152,7 @@ const AnimeList: React.FC<AnimeListProps> = ({
                   </div>
                 ))
               ) : (
-                <p></p>
+                <p>Not available</p>
               )}
             </div>
           </div>

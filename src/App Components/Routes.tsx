@@ -7,6 +7,7 @@ import SeasonSelection from "../Pages/SeasonSelection";
 import TopAnime from "../Pages/TopAnime";
 import Homepage from "../Pages/Homepage";
 import MainLayout from "../Layouts/MainLayout";
+import UpcomingAnimePage from "../Pages/UpcomingAnimePage";
 
 const routes = [
   {
@@ -42,7 +43,7 @@ const routes = [
       },
       {
         path: "/upcoming",
-        element: <SeasonLists />,
+        element: <UpcomingAnimePage />,
         errorElement: <NotFoundPage />,
       },
     ],

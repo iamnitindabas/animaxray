@@ -2,25 +2,9 @@ import AnimeList from "./AnimeList";
 import ListsPagination from "./ListsPagination";
 import ApiHandler from "./ApiHandler";
 import { useEffect, useState } from "react";
+import { AnimeListsProps, pageData } from "../Types/Types";
 
-interface AnimeListProps {
-  smallCards?: boolean;
-  seachQuery?: string;
-  multiAnimeData: [] | null;
-  paginationData: pageobject | null;
-}
-interface pageobject {
-  last_visible_page: number;
-  has_next_page: boolean;
-  current_page: number;
-  items: {
-    count: number;
-    total: number;
-    per_page: number;
-  };
-}
-
-const Animelists: React.FC<AnimeListProps> = ({
+const Animelists: React.FC<AnimeListsProps> = ({
   smallCards,
   seachQuery,
   multiAnimeData,
@@ -31,7 +15,7 @@ const Animelists: React.FC<AnimeListProps> = ({
     : "grid gap-7 py-[2vw] mx-[1vw] 2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 2xl:mx-[1vw] xl:mx-[2vw] md:mx-[10vw] sm:mx-[3vw]";
   const [page, setPage] = useState<number>();
   const [animeData, setAnimeData] = useState<[] | null>(multiAnimeData);
-  const [pageData, setPageData] = useState<pageobject | null>();
+  const [pageData, setPageData] = useState<pageData | null>();
 
   useEffect(() => {
     setAnimeData(multiAnimeData);
@@ -42,7 +26,7 @@ const Animelists: React.FC<AnimeListProps> = ({
     console.log(animePageData);
     console.log("handle AL data fetch executed");
   };
-  const handlePageFetch = (pageData: pageobject | null) => {
+  const handlePageFetch = (pageData: pageData | null) => {
     setPageData(pageData);
     console.log(pageData);
     console.log("handle AL page fetch executed");

@@ -3,7 +3,7 @@ import AnimeLists from "../Components/Animelists";
 import ApiHandler from "../Components/ApiHandler";
 import { pageData } from "../Types/Types";
 
-const TopAnime: React.FC = () => {
+const UpcomingAnimePage: React.FC = () => {
   const [animeData, setAnimeData] = useState<[] | null>(null);
   const [pageData, setPageData] = useState<pageData | null>();
 
@@ -22,9 +22,10 @@ const TopAnime: React.FC = () => {
     <>
       <div className="m-auto max-w-[1400px]">
         <div className="font-bold text-[#647380] text-4xl text-center md:text-left p-4 ">
-          <p>Top Anime</p>
+          <p>Upcoming Anime</p>
         </div>
         <ApiHandler
+          upcomingAnime={true}
           onDataFetch={handleDataFetch}
           onPageFetch={handlePageFetch}
         />
@@ -42,4 +43,4 @@ const TopAnime: React.FC = () => {
   );
 };
 
-export default TopAnime;
+export default UpcomingAnimePage;

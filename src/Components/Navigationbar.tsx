@@ -1,23 +1,20 @@
-import { useState } from "react";
-import Logo from "../assets/Logo.png";
 import {
-  Switch,
-  Navbar,
   Link,
+  Navbar,
   NavbarBrand,
   NavbarContent,
-  NavbarMenuToggle,
-  NavbarMenu,
   NavbarItem,
+  NavbarMenu,
   NavbarMenuItem,
+  NavbarMenuToggle,
+  Switch,
 } from "@nextui-org/react";
+import { useState } from "react";
 import { NavLink as Nlink } from "react-router-dom";
+import { NavbarProps } from "../Types/Types";
+import Logo from "../assets/Logo.png";
 import MoonIcon from "../assets/MoonIcon.tsx";
 import SunIcon from "../assets/SunIcon.tsx";
-
-interface NavbarProps {
-  onModeChange: (Value: boolean) => void;
-}
 
 const Navigationbar: React.FC<NavbarProps> = ({ onModeChange }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
