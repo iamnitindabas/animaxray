@@ -2,27 +2,8 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import { LoadingContext } from "../Contexts/Context";
+import { ApiHandlerProps } from "../Types/Types";
 
-interface ApiHandlerProps {
-  page?: number;
-  season?: string;
-  seasonYear?: number;
-  searchQuery?: string;
-  seasonSearch?: boolean;
-  upcomingAnime?: boolean;
-  onDataFetch: (apidata: [], searchQuery?: string) => void;
-  onPageFetch: (pageData: pageData) => void;
-}
-interface pageData {
-  last_visible_page: number;
-  has_next_page: boolean;
-  current_page: number;
-  items: {
-    count: number;
-    total: number;
-    per_page: number;
-  };
-}
 const ApiHandler: React.FC<ApiHandlerProps> = ({
   searchQuery,
   season,
@@ -41,9 +22,13 @@ const ApiHandler: React.FC<ApiHandlerProps> = ({
       try {
         const res = await fetch(
           upcomingAnime
-            ? `https://api.jikan.moe/v4/seasons/upcoming`
+            ? page
+              ? `https://api.jikan.moe/v4/seasons/upcoming?page=${page}`
+              : `https://api.jikan.moe/v4/seasons/upcoming`
             : seasonSearch
-            ? `https://api.jikan.moe/v4/seasons/${seasonYear}/${season}`
+            ? page
+              ? `https://api.jikan.moe/v4/seasons/${seasonYear}/${season}?page=${page}`
+              : `https://api.jikan.moe/v4/seasons/${seasonYear}/${season}`
             : searchQuery
             ? page
               ? `https://api.jikan.moe/v4/anime?q=${searchQuery}&sfw&page=${page}`

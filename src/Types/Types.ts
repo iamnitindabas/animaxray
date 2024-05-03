@@ -26,10 +26,14 @@ export interface AnimeListProps {
 }
 
 export interface AnimeListsProps {
+  seasonSearch?: boolean;
+  seasonYear?: number;
+  season?: string;
   smallCards?: boolean;
   seachQuery?: string;
-  multiAnimeData: [] | null;
-  paginationData: pageData | null;
+  upcomingAnime?: boolean;
+  multiAnimeData?: [] | null;
+  paginationData?: pageData | null;
 }
 
 export interface pageData {
@@ -49,4 +53,15 @@ export interface NavbarProps {
 export interface ListsPaginationProps {
   paginationData: pageData | null;
   onPageChange: (pageValue: number) => void;
+}
+
+export interface ApiHandlerProps {
+  page?: number;
+  season?: string;
+  seasonYear?: number;
+  searchQuery?: string;
+  seasonSearch?: boolean;
+  upcomingAnime?: boolean;
+  onDataFetch: (apidata: [], searchQuery?: string) => void;
+  onPageFetch: (pageData: pageData) => void;
 }
