@@ -63,7 +63,7 @@ const ApiHandler: React.FC<ApiHandlerProps> = ({
         clearTimeout(typingTimeout);
       }
     };
-  }, [searchQuery, page]);
+  }, [searchQuery, page, season, seasonYear]);
 
   return null;
 };

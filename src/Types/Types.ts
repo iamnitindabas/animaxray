@@ -27,7 +27,7 @@ export interface AnimeListProps {
 
 export interface AnimeListsProps {
   seasonSearch?: boolean;
-  seasonYear?: number;
+  seasonYear?: string;
   season?: string;
   smallCards?: boolean;
   seachQuery?: string;
@@ -58,10 +58,14 @@ export interface ListsPaginationProps {
 export interface ApiHandlerProps {
   page?: number;
   season?: string;
-  seasonYear?: number;
+  seasonYear?: string;
   searchQuery?: string;
   seasonSearch?: boolean;
   upcomingAnime?: boolean;
   onDataFetch: (apidata: [], searchQuery?: string) => void;
   onPageFetch: (pageData: pageData) => void;
+}
+
+export interface FullSearchbarProps {
+  onSeasonYearchange: (selectedYear: string, selectedSeason: string) => void;
 }
